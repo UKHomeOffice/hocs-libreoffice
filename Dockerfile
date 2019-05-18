@@ -9,4 +9,4 @@ ENV JAR_PATH build/libs
 RUN yum update -y glibc && \
     yum update -y nss && \
     yum update -y bind-license && \
-    yum install -y libreoffice-headless
+    yum install -y libreoffice
