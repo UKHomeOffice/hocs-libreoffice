@@ -6,6 +6,7 @@ ENV GROUP group_hocs_docs
 ENV NAME hocs-docs
 ENV JAR_PATH build/libs
 
+# set up enviroment
 RUN yum update -y glibc && \
     yum update -y nss && \
     yum update -y bind-license && \
