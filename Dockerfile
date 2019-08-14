@@ -12,5 +12,4 @@ RUN curl -O http://mirrors.coreix.net/thedocumentfoundation/libreoffice/stable/6
 RUN tar zxvf  LibreOffice_6.2.5_Linux_x86-64_rpm.tar.gz
 RUN cd LibreOffice_6.2.5.2_Linux_x86-64_rpm/RPMS
 RUN su -c 'yum install -y *.rpm'
-RUN cd /bin
-RUN mv libreoffice6.2 libreoffice
+RUN mv /bin/libreoffice6.2 /bin/libreoffice
