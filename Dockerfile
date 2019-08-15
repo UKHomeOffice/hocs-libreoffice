@@ -10,10 +10,11 @@ RUN yum update -y glibc && \
     yum update -y nss && \
     yum update -y bind-license && \
     yum install -y cairo && \
-    yum install -y cups
+    yum install -y cups-libs && \
+    yum install -y libSM
 
 # set up libreOffice
-RUN curl -O http://mirrors.coreix.net/thedocumentfoundation/libreoffice/stable/6.2.5/rpm/x86_64/LibreOffice_6.2.5_Linux_x86-64_rpm.tar.gz
-RUN tar zxvf  LibreOffice_6.2.5_Linux_x86-64_rpm.tar.gz
-RUN su -c 'yum install -y LibreOffice_6.2.5.2_Linux_x86-64_rpm/RPMS/*.rpm'
-RUN cp -P /bin/libreoffice6.2 /bin/libreoffice
+RUN curl -O https://downloadarchive.documentfoundation.org/libreoffice/old/5.4.7.2/rpm/x86_64/LibreOffice_5.4.7.2_Linux_x86-64_rpm.tar.gz
+RUN tar zxvf LibreOffice_5.4.7.2_Linux_x86-64_rpm.tar.gz
+RUN su -c 'yum install -y LibreOffice_5.4.7.2_Linux_x86-64_rpm/RPMS/*.rpm'
+RUN mv /bin/libreoffice5.4 /bin/libreoffice
