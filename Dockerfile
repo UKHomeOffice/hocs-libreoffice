@@ -14,7 +14,7 @@ RUN yum update -y glibc && \
     yum install -y libSM
 
 # set up libreOffice
-RUN curl -O https://downloadarchive.documentfoundation.org/libreoffice/old/5.4.7.2/rpm/x86_64/LibreOffice_5.4.7.2_Linux_x86-64_rpm.tar.gz
-RUN tar zxvf LibreOffice_5.4.7.2_Linux_x86-64_rpm.tar.gz
-RUN su -c 'yum install -y LibreOffice_5.4.7.2_Linux_x86-64_rpm/RPMS/*.rpm'
-RUN mv /bin/libreoffice5.4 /bin/libreoffice
+RUN curl -O https://downloadarchive.documentfoundation.org/libreoffice/old/5.3.6.1/rpm/x86_64/LibreOffice_5.3.6.1_Linux_x86-64_rpm.tar.gz
+RUN tar zxvf LibreOffice_5.3.6.1_Linux_x86-64_rpm.tar.gz
+RUN su -c 'yum install -y LibreOffice_5.3.6.1_Linux_x86-64_rpm/RPMS/*.rpm'
+RUN mv /bin/libreoffice5.3 /bin/libreoffice
