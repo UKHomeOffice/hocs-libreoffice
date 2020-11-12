@@ -18,8 +18,8 @@ RUN yum update -y glibc && \
     yum install -y libreoffice
 
 # set up libreOffice
-RUN curl -O http://mirrors.coreix.net/thedocumentfoundation/libreoffice/_testing_/6.2.6/rpm/x86_64/LibreOffice_6.2.6.2_Linux_x86-64_rpm.tar.gz
-RUN tar zxvf LibreOffice_6.2.6.2_Linux_x86-64_rpm.tar.gz
-RUN su -c 'yum localinstall -y LibreOffice_6.2.6.2_Linux_x86-64_rpm/RPMS/*.rpm'
-RUN /bin/cp -P /bin/libreoffice6.2 /bin/libreoffice
-RUN /bin/cp -P /bin/libreoffice6.2 /bin/openoffice.org
+RUN curl -O http://mirrors.coreix.net/thedocumentfoundation/libreoffice/stable/6.4.7/rpm/x86_64/LibreOffice_6.4.7_Linux_x86-64_rpm.tar.gz
+RUN tar zxvf LibreOffice_6.4.7_Linux_x86-64_rpm.tar.gz
+RUN su -c 'yum localinstall -y LibreOffice_6.4.7_Linux_x86-64_rpm/RPMS/*.rpm'
+RUN /bin/cp -P /bin/libreoffice6.4 /bin/libreoffice
+RUN /bin/cp -P /bin/libreoffice6.4 /bin/openoffice.org
