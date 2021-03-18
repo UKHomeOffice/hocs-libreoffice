@@ -17,7 +17,8 @@ steps:
       DOCKER_PASSWORD:
         from_secret: QUAY_ROBOT_TOKEN
       DOCKER_USERNAME: ukhomeofficedigital+hocs_quay_robot
-    depends_on: []
+    depends_on:
+      - clone
 
   - name: build & push latest
     image: plugins/docker
@@ -33,7 +34,8 @@ steps:
     when:
       branch:
         - main
-    depends_on: []
+    depends_on:
+      - clone
 
 trigger:
   event:
