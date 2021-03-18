@@ -1,27 +1,40 @@
-pipeline:
+---
+kind: pipeline
+type: kubernetes
+name: build
 
-  build-docker-image:
-    image: docker:17.09.1
+steps:
+  - name: build & push
+    image: plugins/docker
+    settings:
+      registry: quay.io
+      repo: quay.io/ukhomeofficedigital/hocs-libreoffice
+      tags:
+        - build_${DRONE_BUILD_NUMBER}
+        - ${DRONE_COMMIT_SHA}
+        - branch-${DRONE_COMMIT_BRANCH/\//_}
     environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    commands:
-      - docker build -t hocs-libreoffice .
-    when:
-      branch: master
-      event: push
+      DOCKER_PASSWORD:
+        from_secret: QUAY_ROBOT_TOKEN
+      DOCKER_USERNAME: ukhomeofficedigital+hocs_quay_robot
+    depends_on: []
 
-  install-docker-image:
-    image: docker:17.09.1
+  - name: build & push latest
+    image: plugins/docker
+    settings:
+      registry: quay.io
+      repo: quay.io/ukhomeofficedigital/hocs-libreoffice
+      tags:
+        - latest
     environment:
-      - DOCKER_HOST=tcp://172.17.0.1:2375
-    secrets:
-      - docker_password
-    commands:
-      - docker login -u="ukhomeofficedigital+hocs" -p=$${DOCKER_PASSWORD} quay.io
-      - docker tag hocs-libreoffice quay.io/ukhomeofficedigital/hocs-libreoffice:build-$${DRONE_BUILD_NUMBER}
-      - docker tag hocs-libreoffice quay.io/ukhomeofficedigital/hocs-libreoffice:latest
-      - docker push quay.io/ukhomeofficedigital/hocs-libreoffice:build-$${DRONE_BUILD_NUMBER}
-      - docker push quay.io/ukhomeofficedigital/hocs-libreoffice:latest
+      DOCKER_PASSWORD:
+        from_secret: QUAY_ROBOT_TOKEN
+      DOCKER_USERNAME: ukhomeofficedigital+hocs_quay_robot
     when:
-      branch: master
-      event: push
+      branch:
+        - main
+    depends_on: []
+
+trigger:
+  event:
+    - push
